@@ -5,8 +5,10 @@
       <img src="<%= post.photo %>" alt="[PHOTO]" width="150" height="150">
     </div>
     <div class="col-sm-9">
-      <p><%= post.description %></p>
-      <%= link_to 'Узнать подробнее', post.link %>
+      <div class="thumbnail">
+        <p><%= post.description %></p>
+        <%= link_to 'Узнать подробнее', post.link %>
+      </div>
     </div>
   </div>
   <div>
