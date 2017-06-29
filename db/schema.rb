@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628205605) do
+ActiveRecord::Schema.define(version: 20170628235304) do
 
   create_table "information_source_users", force: :cascade do |t|
     t.datetime "created_at",            null: false
@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20170628205605) do
     t.string   "description"
     t.string   "pub_date"
     t.string   "photo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "user_id"
+    t.integer  "information_source_id"
+    t.index ["information_source_id"], name: "index_posts_on_information_source_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
