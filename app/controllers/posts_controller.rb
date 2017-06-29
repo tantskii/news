@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   def index
     if user_signed_in?
-      @posts = current_user.posts
+      current_user.has_interests? ? @posts = current_user.made_news_list : @posts = current_user.posts
     else
       @posts = Post.all
     end
