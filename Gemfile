@@ -16,6 +16,8 @@ gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 
+gem 'simple-rss'
+
 gem 'devise'
 group :development, :test do
   gem 'sqlite3'

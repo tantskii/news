@@ -1,25 +1,65 @@
 <div>
   <h1>Edit</h1>
+  <%= link_to 'Сменить пароль', edit_user_registration_path %>
 
-  <%= form_for @user, html: {multipart: true} do |f| %>
-      <%= render partial: 'partials/form_errors', locals: {model: @user} %>
+  <div class="well">
+    <% user = current_user %>
+    <%= form_for user, html: {multipart: true} do |f| %>
+        <%= render partial: 'partials/form_errors', locals: {model: user} %>
 
-      <div class="form-group col-sm-7">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <div class="form-group ">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="action">
+          <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="well">
+    <div class="row">
+      <div class="col-sm-6">
+        <% interest = @new_interest || Interest.new %>
+        <%= form_for interest do |f| %>
+            <div class="form-group">
+              <%= f.label :word %>
+              <%= f.text_field :word, class: 'form-control' %>
+            </div>
+            <%= f.submit 'Добавить', class: 'btn btn-primary' %>
+        <% end %>
       </div>
 
-      <div class="form-group col-sm-7">
-        <%= f.label :email %>
-        <%= f.text_field :email, class: 'form-control' %>
+      <div class="col-sm-6">
+        <% interests = current_user.interests %>
+        <%= render partial: 'interests/interests', object: interests %>
+      </div>
+    </div>
+  </div>
+
+  <div class="well">
+    <div class="row">
+      <div class="col-sm-6">
+        <% source = @new_source || InformationSource.new %>
+        <%= form_for source do |f| %>
+            <div class="form-group">
+              <%= f.label :rss %>
+              <%= f.text_field :rss, class: 'form-control' %>
+            </div>
+            <%= f.submit 'Добавить', class: 'btn btn-primary' %>
+        <% end %>
       </div>
 
-      <div class="actions col-sm-7">
-        <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
-        или <%= link_to 'вернуться', :back %>
-
-        <%= link_to 'Сменить пароль', edit_user_registration_path %>
+      <div class="col-sm-6">
+        <% sources = current_user.information_sources %>
+        <%= render partial: 'information_sources/information_sources', object: sources %>
       </div>
-  <% end %>
-
+    </div>
+  </div>
 </div>

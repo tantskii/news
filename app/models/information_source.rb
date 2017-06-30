@@ -5,6 +5,5 @@ class InformationSource < ApplicationRecord
   has_many :posts
 
   validates :rss, presence: true, uniqueness: true
-  validates :logo, uniqueness: true
   # TODO сделать регулярку, для проверки ссылки
 end

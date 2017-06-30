@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628235304) do
+ActiveRecord::Schema.define(version: 20170630122120) do
 
   create_table "information_source_users", force: :cascade do |t|
     t.datetime "created_at",            null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170628235304) do
     t.integer  "information_source_id"
     t.integer  "user_id"
     t.index ["information_source_id"], name: "index_information_source_users_on_information_source_id"
+    t.index ["user_id", "information_source_id"], name: "index_inf_src_users_on_user_id_and_information_source_id", unique: true
     t.index ["user_id"], name: "index_information_source_users_on_user_id"
   end
 
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170628235304) do
     t.integer  "interest_id"
     t.integer  "user_id"
     t.index ["interest_id"], name: "index_interest_users_on_interest_id"
+    t.index ["user_id", "interest_id"], name: "index_interest_users_on_user_id_and_interest_id", unique: true
     t.index ["user_id"], name: "index_interest_users_on_user_id"
   end
 

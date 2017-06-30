@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index]
 
-  resources :interests, only: [:destroy]
-  resources :information_sources, only: [:destroy]
+  resources :interests, only: [:destroy, :create]
+  resources :information_sources, only: [:destroy, :create]
 end

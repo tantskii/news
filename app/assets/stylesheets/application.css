@@ -18,3 +18,8 @@
 .date-right {
   float: right;
 }
+
+.interest-logo {
+  max-width: 200px;
+  max-height: 32px;
+}

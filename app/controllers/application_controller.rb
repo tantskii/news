@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update,
                                       keys: [:password, :password_confirmation, :current_password])
   end
+
+  def reject_user
+    redirect_to edit_user_path(current_user), alert: 'Неправильная ссылка'
+  end
 end

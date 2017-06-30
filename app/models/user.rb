@@ -44,4 +44,8 @@ class User < ApplicationRecord
   def has_interests?
     !interests.empty?
   end
+
+  def new_interest
+    Interest.new
+  end
 end
