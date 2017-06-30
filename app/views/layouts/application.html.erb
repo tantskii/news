@@ -45,7 +45,9 @@
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <% if user_signed_in? %>
+          <li><%= link_to 'Выйти', destroy_user_session_path%></li>
+        <% end %>
       </ul>
     </div>
   </div>

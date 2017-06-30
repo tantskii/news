@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
+  before_action :costil, only: [:show]
 
   # GET /users/1
   def show
@@ -27,5 +28,14 @@ class UsersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def user_params
     params.require(:user).permit(:name, :email)
+  end
+
+  # TODO переделать этот шит
+  def costil
+    if params[:id] == "sign_out"
+      sign_out current_user
+
+      reject_user
+    end
   end
 end

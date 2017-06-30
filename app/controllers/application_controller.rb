@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def reject_user
-    redirect_to edit_user_path(current_user), alert: 'Неправильная ссылка'
+    redirect_to root_path
   end
 end
