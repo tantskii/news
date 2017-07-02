@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   def index
     if user_signed_in?
       @posts = current_user.made_news_list

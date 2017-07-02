@@ -47,7 +47,7 @@ class User < ApplicationRecord
       news_list = posts.to_a
     end
 
-    news_list
+    sort_by_date(news_list)
   end
 
   def get_posts
@@ -61,8 +61,10 @@ class User < ApplicationRecord
 
     rss = SimpleRSS.parse open(link)
 
+    # А если дата не спарсится?
     rss.items.each do |result|
-      hash = {title:       result.title, pub_date: result.pubDate.to_s,
+      hash = {title:       result.title,
+              pub_date:    DateTime.parse(result.pubDate.to_s).strftime('%I:%M:%S %p %Y-%m-%d'),
               link:        result.link,
               description: result.description[0...250],
               photo:       result.media_content_url}
@@ -101,5 +103,9 @@ class User < ApplicationRecord
 
   def not_contain_nil(hash)
     !hash.values.include?(nil)
+  end
+
+  def sort_by_date(posts)
+    posts.sort_by {|post| DateTime.parse(post.pub_date) }.reverse
   end
 end
