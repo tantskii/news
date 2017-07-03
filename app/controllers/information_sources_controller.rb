@@ -42,7 +42,7 @@ class InformationSourcesController < ApplicationController
   end
 
   def check_link
-    reject_user unless correct_link?
+    redirect_to edit_user_path(current_user), alert: 'Какая-то неправильная ссылка' unless correct_link?
   end
 
   # TODO подумать куда переместить и протестировать

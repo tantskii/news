@@ -61,6 +61,14 @@ class User < ApplicationRecord
 
     rss = SimpleRSS.parse open(link)
 
+    # TODO Написать хороший энкодер это временная мера
+    rss.items.each do |result|
+      result.title             = result.title.force_encoding('utf-8') unless result.title.nil?
+      result.link              = result.link.force_encoding('utf-8') unless result.link.nil?
+      result.description       = result.description.force_encoding('utf-8') unless result.description.nil?
+      result.media_content_url = result.media_content_url.force_encoding('utf-8') unless result.media_content_url.nil?
+    end
+
     # А если дата не спарсится?
     rss.items.each do |result|
       hash = {title:       result.title,

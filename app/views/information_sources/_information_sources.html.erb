@@ -4,6 +4,8 @@
     <% information_sources.each do |source| %>
         <% if source.logo %>
             <img class="interest-logo" src="<%= source.logo %>">
+        <% else %>
+            <h4><%= source.name %></h4>
         <% end %>
     <% end %>
   </p>
