@@ -69,7 +69,7 @@ class User < ApplicationRecord
               description: result.description[0...250],
               photo:       result.media_content_url}
 
-      if not_contain_nil(hash)
+      if not_contain_nil?(hash)
         hash = fix_conversation_error(hash)
 
         hash = hash.merge({information_source: source, user: self})
@@ -94,6 +94,10 @@ class User < ApplicationRecord
   def fix_conversation_error(hash)
     new_hash = {}
 
+    new_hash[:photo] = hash[:photo]
+
+    hash.delete(:photo)
+
     hash.to_a.each do |item|
       new_hash[item[0]] = item[1].encode('UTF-8', {invalid: :replace, undef: :replace, replace: '?'})
     end
@@ -101,7 +105,9 @@ class User < ApplicationRecord
     new_hash
   end
 
-  def not_contain_nil(hash)
+  def not_contain_nil?(hash)
+    hash.delete(:photo)
+
     !hash.values.include?(nil)
   end
 

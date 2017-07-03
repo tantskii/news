@@ -15,9 +15,14 @@
  *= require_self
  */
 
-.date-right {
+.float-right {
   float: right;
 }
+
+.float-left {
+  float: left;
+}
+
 
 .interest-logo {
   max-width: 200px;

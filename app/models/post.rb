@@ -7,5 +7,5 @@ class Post < ApplicationRecord
   validates :link, presence: true
   validates :description, presence: true, length: {maximum: 255}
   validates :pub_date, presence: true
-  validates :photo, presence: true
+  validates :photo, presence: true, allow_nil: true
 end
