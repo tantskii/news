@@ -2,7 +2,7 @@ class InterestsController < ApplicationController
   before_action :set_interest, only: [:destroy]
 
   def destroy
-    @interest.destroy
+    @interest.users.destroy(current_user)
     redirect_to edit_user_path(current_user), notice: 'Interest was successfully destroyed.'
   end
 

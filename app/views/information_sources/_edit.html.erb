@@ -1,0 +1,19 @@
+<% sources = current_user.information_sources %>
+
+<div class="thumbnail">
+  <p>Interests</p>
+  <p>
+    <% sources.each do |source| %>
+      <div class="row buffer-both">
+        <div class="col-sm-7">
+          <h4><%= source.name %></h4>
+        </div>
+        <div class="col-sm-5">
+          <%= button_to "Удалить", information_source_path(source), class: 'btn btn-danger btn-xs',
+                        data: {confirm: "Вы уверены?"}, method: :delete %>
+        </div>
+      </div>
+
+  <% end %>
+  </p>
+</div>

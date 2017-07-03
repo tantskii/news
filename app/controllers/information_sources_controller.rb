@@ -8,7 +8,7 @@ class InformationSourcesController < ApplicationController
   before_action :check_link, only: [:create]
 
   def destroy
-    @information_source.destroy
+    @information_source.users.destroy(current_user)
     redirect_to edit_user_path(current_user), notice: 'Information source was successfully destroyed.'
   end
 

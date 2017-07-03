@@ -1,0 +1,19 @@
+<% interests = current_user.interests %>
+
+<div class="thumbnail">
+  <p>Interests</p>
+  <p>
+    <% interests.each do |interest| %>
+      <div class="row buffer-both">
+        <div class="col-sm-7">
+          <h4><span class="label label-primary"><%= interest.word %></span></h4>
+        </div>
+        <div class="col-sm-5">
+          <%= button_to "Удалить", interest_path(interest), class: 'btn btn-danger btn-xs',
+                        data: {confirm: "Вы уверены?"}, method: :delete %>
+        </div>
+      </div>
+
+  <% end %>
+  </p>
+</div>
