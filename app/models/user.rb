@@ -91,6 +91,10 @@ class User < ApplicationRecord
     !interests.empty?
   end
 
+  def has_information_sources?
+    !information_sources.empty?
+  end
+
   def has_posts?
     !posts.empty?
   end

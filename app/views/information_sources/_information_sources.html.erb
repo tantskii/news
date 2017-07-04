@@ -1,12 +1,19 @@
 <div class="thumbnail">
-  <p>Sources</p>
-  <p>
-    <% information_sources.each do |source| %>
-        <% if source.logo %>
-            <img class="interest-logo" src="<%= source.logo %>">
-        <% else %>
-            <h4><%= source.name %></h4>
+  <% if current_user.has_information_sources? %>
+      <p>Sources</p>
+      <p>
+        <% information_sources.each do |source| %>
+            <% if source.logo %>
+                <img class="interest-logo" src="<%= source.logo %>">
+            <% else %>
+                <h4><%= source.name %></h4>
+            <% end %>
         <% end %>
-    <% end %>
-  </p>
+        </p>
+  <% else %>
+      <p> Вы пока не читаете ни один источник.
+        Если у вы хотите их добавить нажмите на
+        <%= link_to 'Настройки', edit_user_path(current_user)%>
+        на верхней панели.</p>
+  <% end %>
 </div>

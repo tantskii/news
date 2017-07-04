@@ -1,8 +1,15 @@
 <div class="thumbnail">
-  <p>Interests</p>
-  <p>
-    <% interests.each do |interest| %>
-        <span class="label label-primary"><%= interest.word %></span>
-    <% end %>
-  </p>
+  <% if current_user.has_interests? %>
+      <p>Interests</p>
+      <p>
+        <% interests.each do |interest| %>
+            <span class="label label-primary"><%= interest.word %></span>
+        <% end %>
+      </p>
+  <% else %>
+      <p> Вы пока не добовляли тэгов.
+        Сделать это можно нажав на вкладку
+        <%= link_to 'Настройки', edit_user_path(current_user)%>
+        на верхней панели.</p>
+  <% end %>
 </div>

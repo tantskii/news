@@ -7,6 +7,9 @@
   <title><%= content_for?(:title) ? yield(:title) : "News" %></title>
   <%= csrf_meta_tags %>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
   <%= stylesheet_link_tag "application", :media => "all" %>
 
   <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
@@ -36,7 +39,6 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
-            <li><%= link_to 'Профиль', current_user %></li>
             <li><%= link_to 'Лента', root_path %></li>
             <li><%= link_to 'Настройки', edit_user_path(current_user) %></li>
         <% else %>
@@ -46,7 +48,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to 'Выйти', destroy_user_session_path%></li>
+            <li><%= link_to 'Выйти', destroy_user_session_path %></li>
         <% end %>
       </ul>
     </div>
@@ -57,41 +59,29 @@
   <div class="row">
     <div class="col-sm-3 well">
       <div class="well">
-        <p><a href="#">My Profile</a></p>
-        <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+        <p>My Profile</p>
+        <% if current_user.present? %>
+            <h4><%= current_user.name %></h4>
+            <h4><%= current_user.email %></h4>
+        <% else %>
+            <p>Вы еще не залогинились.</p>
+        <% end %>
       </div>
       <% if current_user.present? %>
-      <% interests = current_user.interests %>
-      <%= render partial: 'interests/interests', object: interests %>
+          <% interests = current_user.interests %>
+          <%= render partial: 'interests/interests', object: interests %>
 
-      <% information_sources = current_user.information_sources %>
-      <%= render partial: 'information_sources/information_sources',
-                 object: information_sources %>
+          <% information_sources = current_user.information_sources %>
+          <%= render partial: 'information_sources/information_sources',
+                     object:  information_sources %>
       <% end %>
     </div>
 
-    <div class="col-sm-7">
-        <%= bootstrap_flash %>
-        <%= yield %>
-    </div>
-
-    <div class="col-sm-2 well">
-      <div class="thumbnail">
-        <p>Upcoming Events:</p>
-        <img src="paris.jpg" alt="Paris" width="400" height="300">
-        <p><strong>Paris</strong></p>
-        <p>Fri. 27 November 2015</p>
-        <button class="btn btn-primary">Info</button>
-      </div>
-      <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
-      </div>
+    <div class="col-sm-9">
+      <%= bootstrap_flash %>
+      <%= yield %>
     </div>
   </div>
-</div>
 </div>
 
 </body>
